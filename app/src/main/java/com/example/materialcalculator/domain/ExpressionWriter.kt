@@ -39,13 +39,13 @@ class ExpressionWriter {
     }
 
     private fun prepareForCalculation(): String {
-        val newExpression = expression.takeLastWhile {
+        val newExpression = expression.dropLastWhile {
             it in "$operationSymbols(."
         }
         if(newExpression.isEmpty()) {
-            return expression
+            return "0"
         }
-        return expression.dropLast(newExpression.length)
+        return newExpression
     }
 
     private fun processParentheses() {
